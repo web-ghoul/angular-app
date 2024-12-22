@@ -1,0 +1,9 @@
+<header
+  class="bg-slate-100 px-16 py-3 shadow-md flex justify-between items-center gap-4"
+>
+  <button class="font-[700] text-xl cursor-pointer" routerLink="/">webGhoul Store</button>
+  <app-primary-button
+    [label]="'Cart (' + cartService.cart().length+')'"
+    routerLink="/cart"
+  />
+</header>

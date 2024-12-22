@@ -1,0 +1,21 @@
+<div class="grid justify-stretch items-center gap-6">
+  <div class="grid justify-stretch items-center gap-4">
+    <h1 class="text-3xl">Products</h1>
+    <div class="flex justify-start items-center gap-2">
+      <mat-form-field>
+        <mat-label>Cars</mat-label>
+        <mat-select matNativeControl required>
+          <mat-option value="volvo">Volvo</mat-option>
+          <mat-option value="saab">Saab</mat-option>
+          <mat-option value="mercedes">Mercedes</mat-option>
+          <mat-option value="audi">Audi</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="grid justify-stretch items-center grid-cols-4 grid-rows-1 gap-6">
+    @for (product of products(); track $index) {
+    <app-product class="h-full" [product]="product" />
+    }
+  </div>
+</div>

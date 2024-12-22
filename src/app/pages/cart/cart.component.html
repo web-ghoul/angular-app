@@ -1,0 +1,17 @@
+<div class="grid justify-stretch items-center gap-6">
+  <h1 class="text-3xl">Shopping Cart</h1>
+  @if ( cartService.cart().length === 0) {
+  <h6 class="text-gray-400 text-center text-xl">No Products Yet...</h6>
+  }@else{
+  <div class="grid justify-stretch items-center grid-rows-1 gap-6">
+    @for (product of cartService.cart(); track $index) {
+    <app-cart-card
+      class="h-full"
+      [count]="cartService.cartCounter()[product.id]"
+      [product]="product"
+    />
+    }
+    <app-order-summary/>
+  </div>
+  }
+</div>
