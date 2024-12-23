@@ -1,9 +1,17 @@
 <header
-  class="bg-slate-100 px-16 py-3 shadow-md flex justify-between items-center gap-4"
+  class="bg-slate-100 px-16 lg:px-12 md:!px-8 xs:!px-4 py-3 shadow-md flex justify-between items-center gap-4"
 >
-  <button class="font-[700] text-xl cursor-pointer" routerLink="/">webGhoul Store</button>
-  <app-primary-button
-    [label]="'Cart (' + cartService.cart().length+')'"
-    routerLink="/cart"
-  />
+  <button
+    class="font-[700] text-xl md:!text-md xs:!text-sm cursor-pointer flex justify-start items-center gap-2"
+    routerLink="/"
+  >
+    <img src="./logo.png" class="w-[40px] md:!w-[30px] rounded-full" alt="webGhoul" />
+    webGhoul Store
+  </button>
+  <div class="flex justify-center items-center gap-6 md:gap-4 xs:!gap-2">
+    <app-primary-button routerLink="/cart">
+      {{ "Cart (" + cartService.cart().length + ")" }}
+    </app-primary-button>
+    <app-secondary-button routerLink="/login"> Login </app-secondary-button>
+  </div>
 </header>

@@ -31,4 +31,14 @@ export class ProductsListComponent {
     const categoriesData = await categoriesRes.json();
     this.categories.set(categoriesData);
   }
+
+  handleCategoryChange = async (value: string) => {
+    const productsRes = await fetch(
+      value
+        ? `https://fakestoreapi.com/products/category/${value}`
+        : 'https://fakestoreapi.com/products'
+    );
+    const productsData = await productsRes.json();
+    this.products.set(productsData);
+  };
 }

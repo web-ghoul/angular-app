@@ -7,8 +7,6 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './primary-button.component.css',
 })
 export class PrimaryButtonComponent {
-  label = input('');
-
   variant = input('primary');
 
   btnClicked = output();
