@@ -1,16 +1,31 @@
-import { Component, signal } from '@angular/core';
-import { Product } from '../../models/products.model';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { PrimaryButtonComponent } from '../../components/primary-button/primary-button.component';
+import { Product } from '../../models/products.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [PrimaryButtonComponent, NgxImageZoomModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
 export class ProductComponent {
-  product = signal<Product | undefined>(undefined);
+  product = signal<Product>({
+    title: '',
+    id: 0,
+    category: '',
+    description: '',
+    image: '',
+    price: 0,
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  });
   loading = signal<boolean>(false);
+  cartService = inject(CartService);
 
   constructor(private route: ActivatedRoute) {}
 
