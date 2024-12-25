@@ -63,10 +63,23 @@ export class RegisterComponent {
   }
 
   handleSubmit = async () => {
+    if (
+      this.userNameFormControl.errors &&
+      this.passwordFormControl.errors &&
+      this.lastNameFormControl.errors &&
+      this.firstNameFormControl.errors &&
+      this.phoneFormControl.errors &&
+      this.emailFormControl.errors
+    ) {
+      return;
+    }
     this.loading.set(true);
     try {
+      let myHeaders = new Headers();
+      myHeaders.set('Content-Type', 'application/json');
       const registerRes = await fetch('https://fakestoreapi.com/users', {
         method: 'POST',
+        headers: myHeaders,
         body: JSON.stringify({
           email: this.emailFormControl.value,
           username: this.userNameFormControl.value,

@@ -56,10 +56,16 @@ export class LoginComponent {
   }
 
   handleSubmit = async () => {
+    if (this.userNameFormControl.errors && this.passwordFormControl.errors) {
+      return;
+    }
     this.loading.set(true);
     try {
+      let myHeaders = new Headers();
+      myHeaders.set('Content-Type', 'application/json');
       const loginRes = await fetch('https://fakestoreapi.com/auth/login', {
         method: 'POST',
+        headers: myHeaders,
         body: JSON.stringify({
           username: this.userNameFormControl.value,
           password: this.passwordFormControl.value,
@@ -69,7 +75,7 @@ export class LoginComponent {
       console.log(loginData);
       this.openSnackBar('Welcome Back!!', '');
     } catch (error) {
-      console.log('Login Error :', error);
+      this.openSnackBar('Error Occurs', '');
     } finally {
       this.loading.set(false);
     }

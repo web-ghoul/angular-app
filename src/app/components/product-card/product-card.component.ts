@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Product } from '../../models/products.model';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
 import { CartService } from '../../services/cart.service';
@@ -21,6 +21,17 @@ import { CategoryCardComponent } from '../category-card/category-card.component'
 })
 export class ProductCardComponent {
   product = input.required<Product>();
-
   cartService = inject(CartService);
+  starsFilled = signal<number[]>([]);
+  starsEmpty = signal<number[]>([]);
+  ngOnInit(): void {
+    if (this.product()) {
+      this.starsFilled.set(
+        Array.from({ length: Math.round(this.product().rating.rate) })
+      );
+      this.starsEmpty.set(
+        Array.from({ length: 5 - Math.round(this.product().rating.rate) })
+      );
+    }
+  }
 }

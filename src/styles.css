@@ -4,3 +4,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ngxImageZoomContainer{
+  width: 100% !important;
+  height: auto !important;
+}
+
+.ngxImageZoomThumbnail{
+  width: 100% !important;
+  height: auto;
+}

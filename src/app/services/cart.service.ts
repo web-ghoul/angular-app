@@ -20,6 +20,10 @@ export class CartService {
     }
   };
 
+  getIds = () => {
+    return ['1', '2'];
+  };
+
   handleClear = () => {
     this.cart.set([]);
     this.total.set(0);

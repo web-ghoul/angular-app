@@ -1,0 +1,2 @@
+/product/1
+/product/555
