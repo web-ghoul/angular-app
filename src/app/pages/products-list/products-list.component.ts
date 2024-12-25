@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { Product } from '../../models/products.model';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { Product } from '../../models/products.model';
 
 @Component({
   selector: 'app-products-list',
@@ -66,7 +66,7 @@ export class ProductsListComponent {
     try {
       let url = 'https://fakestoreapi.com/products';
       if (category) {
-        url = url + `/category/${category}`;
+        url = url + `/category/${value}`;
       }
       if (sort) {
         url = url + `?sort=${sort}`;
@@ -100,7 +100,7 @@ export class ProductsListComponent {
         url = url + `/category/${category}`;
       }
       if (sort) {
-        url = url + `?sort=${sort}`;
+        url = url + `?sort=${value}`;
       }
       const productsRes = await fetch(url);
       const productsData = await productsRes.json();

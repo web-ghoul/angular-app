@@ -2,23 +2,26 @@
   [routerLink]="['/product', product().id]"
   class="flex flex-col !h-full justify-stretch items-center gap-6 bg-white shadow-lg overflow-hidden relative rounded-lg p-4 cursor-pointer transition-all hover:translate-y-[-2px] hover:shadow-xl"
 >
-  <div class="absolute flex justify-center items-center right-[0px] top-[0px] px-2 py-1 bg-white rounded-md">
+  <div
+    class="absolute flex justify-center items-center right-[0px] top-[0px] px-2 py-1 bg-white rounded-md"
+  >
     @if(product().rating.count > 0){
-    <h6
-      class="text-md font-[500] text-blue-600"
-    >
+    <h6 class="text-sm font-[500] text-blue-600">
       {{ product().rating.count }} in stock
     </h6>
     }@else {
-    <h6 class="text-md font-[500] text-red-600">out of stock</h6>
+    <h6 class="text-sm font-[500] text-red-600">out of stock</h6>
     }
   </div>
-
-  <img
-    src="{{ product().image }}"
-    alt="{{ product().id }}"
-    class="h-[200px] w-auto object-contain"
-  />
+  <div
+    class="flex justify-center items-center relative !h-[200px] w-full !max-h-[200px]"
+  >
+    <img
+      src="{{ product().image }}"
+      alt="{{ product().id }}"
+      class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-auto h-full object-contain"
+    />
+  </div>
   <app-category-card
     class="w-full flex justify-start"
     category="{{ product().category }}"
