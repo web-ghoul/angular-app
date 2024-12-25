@@ -8,6 +8,8 @@ import { Component, input, output } from '@angular/core';
 })
 export class PrimaryButtonComponent {
   variant = input('primary');
+  type = input('button');
+  class = input('');
 
   btnClicked = output();
 }

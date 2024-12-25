@@ -1,0 +1,59 @@
+<div
+  [routerLink]="['/product', product().id]"
+  class="flex flex-col !h-full justify-stretch items-center gap-6 bg-white shadow-lg overflow-hidden relative rounded-lg p-4 cursor-pointer transition-all hover:translate-y-[-2px] hover:shadow-xl"
+>
+  <div class="absolute flex justify-center items-center right-[0px] top-[0px] px-2 py-1 bg-white rounded-md">
+    @if(product().rating.count > 0){
+    <h6
+      class="text-md font-[500] text-blue-600"
+    >
+      {{ product().rating.count }} in stock
+    </h6>
+    }@else {
+    <h6 class="text-md font-[500] text-red-600">out of stock</h6>
+    }
+  </div>
+
+  <img
+    src="{{ product().image }}"
+    alt="{{ product().id }}"
+    class="h-[200px] w-auto object-contain"
+  />
+  <app-category-card
+    class="w-full flex justify-start"
+    category="{{ product().category }}"
+  />
+  <div
+    class="grid justify-stretch items-center content-between h-full gap-2 w-full"
+  >
+    <div class="grid justify-stretch items-center gap-4">
+      <div class="grid gap-2">
+        <h3 class="font-[700] text-xl">{{ product().title }}</h3>
+        <h6 class="font-[500] text-md truncate">{{ product().description }}</h6>
+      </div>
+      <h5 class="font-[600] text-lg">EGP {{ product().price }}</h5>
+    </div>
+    @if (product().rating.count > 0) {
+    <app-primary-button
+      class="!w-fit"
+      (btnClicked)="cartService.handleAddToCart(product())"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 mr-2"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 3h18l-3 9H6L3 3zm3 12a3 3 0 106 0M15 15a3 3 0 106 0"
+        />
+      </svg>
+      Add To Cart
+    </app-primary-button>
+    }
+  </div>
+</div>

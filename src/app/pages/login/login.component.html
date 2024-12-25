@@ -1,5 +1,5 @@
 <section
-  class="rounded-xl shadow-xl bg-white p-6 grid justify-stretch items-center gap-6"
+  class="rounded-xl shadow-xl bg-white p-6 grid justify-stretch items-center gap-6 w-[50vw] m-auto"
 >
   <h1 class="text-3xl font-[700] flex justify-center items-center gap-2">
     <svg
@@ -18,39 +18,46 @@
     </svg>
     Login
   </h1>
-  <form class="">
+
+  <form (ngSubmit)="handleSubmit()" class="grid justify-stretch gap-4">
     <mat-form-field class="example-full-width">
-      <mat-label>Email</mat-label>
+      <mat-label>Username</mat-label>
       <input
-        type="email"
         matInput
-        [formControl]="emailFormControl"
+        type="text"
+        [formControl]="userNameFormControl"
         [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="webGhoul"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
-      !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-      } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      @if (userNameFormControl.hasError('required')) {
+      <mat-error>Username is <strong>required</strong></mat-error>
       }
     </mat-form-field>
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>First name</mat-label>
-            <input matInput placeholder="Mahmoud" />
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width">
-            <mat-label>Last Name</mat-label>
-            <input matInput placeholder="Salama" />
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        [formControl]="passwordFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="*********"
+      />
+      @if (passwordFormControl.hasError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <app-primary-button type="submit">
+      @if (loading()) { Loading... }@else { Login }
+    </app-primary-button>
   </form>
+  <div class="flex justify-center items-center gap-2 flex-wrap">
+    <h6 class="font-[500]">Create new Account ?</h6>
+    <button
+      type="button"
+      routerLink="/register"
+      class="text-blue-600 underline cursor-pointer"
+    >
+      Register
+    </button>
+  </div>
 </section>

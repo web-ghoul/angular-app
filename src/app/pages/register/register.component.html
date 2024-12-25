@@ -1,1 +1,119 @@
-<p>register works!</p>
+<section
+  class="rounded-xl shadow-xl bg-white p-6 grid justify-stretch items-center gap-6 w-[50vw] m-auto"
+>
+  <h1 class="text-3xl font-[700] flex justify-center items-center gap-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+      />
+    </svg>
+    Register
+  </h1>
+
+  <form (ngSubmit)="handleSubmit()" class="grid justify-stretch gap-4">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        [formControl]="emailFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="Ex. pat@example.com"
+      />
+      @if (emailFormControl.hasError('email') &&
+      !emailFormControl.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+      } @if (emailFormControl.hasError('required')) {
+      <mat-error>Email is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        type="text"
+        [formControl]="userNameFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="webGhoul"
+      />
+      @if (userNameFormControl.hasError('required')) {
+      <mat-error>Username is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>First name</mat-label>
+      <input
+        matInput
+        [formControl]="firstNameFormControl"
+        [errorStateMatcher]="matcher"
+        type="text"
+        placeholder="Mahmoud"
+      />
+      @if (firstNameFormControl.hasError('required')) {
+      <mat-error>First Name is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        [formControl]="lastNameFormControl"
+        [errorStateMatcher]="matcher"
+        type="text"
+        placeholder="Salama"
+      />
+      @if (lastNameFormControl.hasError('required')) {
+      <mat-error>Last Name is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Telephone</mat-label>
+      <span matTextPrefix>+20 &nbsp;</span>
+      <input
+        type="tel"
+        [formControl]="phoneFormControl"
+        [errorStateMatcher]="matcher"
+        matInput
+        placeholder="555-555-1234"
+      />
+      @if (phoneFormControl.hasError('required')) {
+      <mat-error>Telephone is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        [formControl]="passwordFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="*********"
+      />
+      @if (passwordFormControl.hasError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <app-primary-button type="submit">
+      @if (loading()) { Loading... }@else { Register }
+    </app-primary-button>
+  </form>
+  <div class="flex justify-center items-center gap-2 flex-wrap">
+    <h6 class="font-[500]">Have already Account ?</h6>
+    <button
+      type="button"
+      routerLink="/login"
+      class="text-blue-600 underline cursor-pointer"
+    >
+      Login
+    </button>
+  </div>
+</section>

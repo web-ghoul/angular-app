@@ -1,7 +1,9 @@
 <button
-  class="bg-blue-600 border-blue-600 border-2 transition-all hover:bg-white hover:text-blue-600 text-white px-4 py-2 md:!px-3 md:!py-1 xs:!px-2 rounded-xl md:!rounded-lg xs:!rounded-md shadow-md flex justify-center items-center"
+  class="bg-blue-600 border-blue-600 border-2 transition-all hover:bg-white hover:text-blue-600 text-white px-4 py-2 md:!px-3 md:!py-1 xs:!px-2 rounded-xl md:!rounded-lg xs:!rounded-md shadow-md flex justify-center items-center w-full"
   [class]="variant() === 'delete' ? '!bg-red-400' : ''"
+  [class]="class()"
   (click)="btnClicked.emit()"
+  [type]="type()"
 >
   <ng-content></ng-content>
 </button>

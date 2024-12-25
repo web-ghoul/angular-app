@@ -21,6 +21,7 @@
       <mat-form-field>
         <mat-label>Select Category</mat-label>
         <mat-select
+          [value]="selectedCategory()"
           matNativeControl
           (selectionChange)="handleCategoryChange($event.value)"
         >
@@ -30,13 +31,28 @@
           }
         </mat-select>
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select
+        [value]="selectedSort()"
+          matNativeControl
+          (selectionChange)="handleSort($event.value)"
+        >
+          <mat-option value="desc">Desc</mat-option>
+          <mat-option value="asc">Asc</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
+  @if (loading()) {
+  <h1 class="text-3xl font-[500] text-gray-500 text-center">Loading...</h1>
+  }@else {
   <div
     class="grid justify-stretch items-center grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 xs:!grid-cols-1 grid-rows-1 gap-6 md:gap-4 sm:!gap-2"
   >
     @for (product of products(); track $index) {
-    <app-product class="h-full" [product]="product" />
+    <app-product-card class="h-full" [product]="product" />
     }
   </div>
+  }
 </section>
