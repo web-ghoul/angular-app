@@ -8,6 +8,5 @@ import { Component, input, output } from '@angular/core';
 })
 export class SecondaryButtonComponent {
   variant = input('secondary');
-
   btnClicked = output();
 }

@@ -21,13 +21,12 @@
   }@else{
   <div class="grid justify-stretch items-center grid-rows-1 gap-6">
     @for (product of cartService.cart(); track $index) {
-    <app-cart-card
+    <app-cart-item
       class="h-full"
       [count]="cartService.cartCounter()[product.id]"
       [product]="product"
     />
     }
-    <app-order-summary />
   </div>
   }
 </div>

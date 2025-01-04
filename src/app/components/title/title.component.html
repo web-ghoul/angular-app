@@ -1,0 +1,13 @@
+<h1
+  class="text-3xl font-[500] flex justify-start items-center gap-2"
+  [class]="
+    align() === 'center'
+      ? 'justify-center'
+      : align() === 'right'
+      ? 'justify-end'
+      : 'justify-start'
+  "
+>
+  <ng-content></ng-content>
+  {{ title() }}
+</h1>

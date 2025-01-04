@@ -1,0 +1,60 @@
+<div
+  class="flex flex-row !h-full justify-stretch items-center gap-4 bg-white shadow-lg overflow-hidden rounded-lg"
+>
+  <img
+    src="{{ product().image }}"
+    alt="{{ product().id }}"
+    class="!h-[100px] !w-[100px] object-contain"
+  />
+  <div class="grid justify-stretch items-center gap-2 p-4 w-full">
+    <h3 class="font-[700] text-xl">{{ product().title }}</h3>
+    <h5 class="font-[500] text-lg">EGP {{ product().price }}</h5>
+    <div
+      class="flex justify-center items-center gap-2 border-2 border-gray-300 p-2 rounded-md w-fit"
+    >
+      <button (click)="cartService.handleCounterUp(product().id)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      </button>
+      <span>{{ count() }}</span>
+      <button (click)="cartService.handleCounterDown(product().id)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <h5 class="font-[600] text-lg">
+      Total : EGP {{ (product().rating.count * count()).toFixed(2) }}
+    </h5>
+    @if (product().rating.count && product().rating.count > 0) {
+    <app-primary-button
+      label="Remove"
+      variant="delete"
+      (btnClicked)="cartService.handleRemoveProduct(product().id)"
+    />
+    }
+  </div>
+</div>

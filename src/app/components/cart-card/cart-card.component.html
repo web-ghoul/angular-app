@@ -1,60 +1,26 @@
-<div
-  class="flex flex-row !h-full justify-stretch items-center gap-4 bg-white shadow-lg overflow-hidden rounded-lg"
->
-  <img
-    src="{{ product().image }}"
-    alt="{{ product().id }}"
-    class="!h-[100px] !w-[100px] object-contain"
-  />
-  <div class="grid justify-stretch items-center gap-2 p-4 w-full">
-    <h3 class="font-[700] text-xl">{{ product().title }}</h3>
-    <h5 class="font-[500] text-lg">EGP {{ product().price }}</h5>
-    <div
-      class="flex justify-center items-center gap-2 border-2 border-gray-300 p-2 rounded-md w-fit"
+<div class="card" [routerLink]="routers.cartsRoute + '/' + cart().id">
+  <div class="flex justify-center items-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="size-20 md:size-16 sm:!size-14"
     >
-      <button (click)="cartService.handleCounterUp(product().id)">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          />
-        </svg>
-      </button>
-      <span>{{ count() }}</span>
-      <button (click)="cartService.handleCounterDown(product().id)">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          />
-        </svg>
-      </button>
-    </div>
-    <h5 class="font-[600] text-lg">
-      Total : EGP {{ (product().rating.count * count()).toFixed(2) }}
-    </h5>
-    @if (product().rating.count && product().rating.count > 0) {
-    <app-primary-button
-      label="Remove"
-      variant="delete"
-      (btnClicked)="cartService.handleRemoveProduct(product().id)"
-    />
-    }
+      <path
+        fill-rule="evenodd"
+        d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </div>
+  <div class="grid justify-center items-center text-center gap-2">
+    <h3 class="text-xl font-[600] text-blue-600">
+      {{
+        cart().products.length +
+          " " +
+          (cart().products.length > 1 ? "Products" : "Product")
+      }}
+    </h3>
+    <h5 class="text-lg">{{ cart().date.split("T")[0] }}</h5>
   </div>
 </div>
